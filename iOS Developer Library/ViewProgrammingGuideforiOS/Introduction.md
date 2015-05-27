@@ -10,3 +10,8 @@
 
 ## 视图管理你的应用的可视化内容
 视图是UIView类（或者是他的基类）的实例，它管理一个在视图窗口中的矩形区域。视图负责绘制内容，处理多点触摸事件，并管理子视图的布局。绘图涉及使用图形技术,如Core Graphics,OpenGL ES,或者UIKit来绘制形状，图像和视图的矩形区域内的文本。视图响应在它的矩形区域内的触摸事件通过手势识别或者直接处理触摸事件。在视图层次结构中，父视图负责确定位置和设置子视图的坐标并且能动态的设置坐标和大小。这种能力能够动态的改变子视图让你的视图适应不断变化的条件，比如界面的旋转和变化。
+
+> 相关文章：[视图和视图窗口的结构](https://developer.apple.com/library/ios/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/WindowsandViews/WindowsandViews.html#//apple_ref/doc/uid/TP40009503-CH2-SW1),[视图](https://developer.apple.com/library/ios/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/CreatingViews/CreatingViews.html#//apple_ref/doc/uid/TP40009503-CH5-SW1)
+
+## 视图在视图窗口坐标的显示
+视图窗口是[UIWindow](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIWindow_Class/index.html#//apple_ref/occ/cl/UIWindow)的实例[这是个连接](https://github.com/JohnTsaii/TranslationPlan/edit/master/iOS%20Developer%20Library/ViewProgrammingGuideforiOS/Introduction.md/ "概览")
