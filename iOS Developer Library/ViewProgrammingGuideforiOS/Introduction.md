@@ -14,7 +14,7 @@
 > 相关文章：[视图和视图窗口的结构](https://developer.apple.com/library/ios/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/WindowsandViews/WindowsandViews.html#//apple_ref/doc/uid/TP40009503-CH2-SW1),[视图](https://developer.apple.com/library/ios/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/CreatingViews/CreatingViews.html#//apple_ref/doc/uid/TP40009503-CH5-SW1)
 
 ## 视图在视图窗口坐标的显示
-视图窗口是[UIWindow](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIWindow_Class/index.html#//apple_ref/occ/cl/UIWindow)的实例并处理应用程序的用户界面整体的外观。视图窗口作用于管理视图（和其所属的视图管理器）的交互，改变，在可视视图的层次上。在大多数情况下，你的应用的视图窗口永远不会改变。在视图窗口被创建后，它保持不变并且只会通过改变视图的显示。每个应用程序至少有一个视图窗口来显示在设备主界面的用户界面。如果一个外部显示的界面被连接到设备，应用也会在屏幕上创建第二个视图窗口来呈现内容。
+视图窗口是[UIWindow](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIWindow_Class/index.html#//apple_ref/occ/cl/UIWindow)的实例它负责处理应用程序的用户界面整体的外观。视图窗口作用于管理视图（和其所属的视图管理器）上的交互和改变。在大多数情况下，你的应用的视图窗口永远不会改变。在视图窗口被创建后，它保持不变并且只能改变视图的显示。每个应用程序至少有一个视图窗口来显示在设备主界面的用户界面。如果一个应用外部显示的界面被连接到设备，应用也会在屏幕上创建第二个视图窗口来呈现内容。
 
 > 相关文章：[视图窗口](https://developer.apple.com/library/ios/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/CreatingWindows/CreatingWindows.html#//apple_ref/doc/uid/TP40009503-CH4-SW1)
 
