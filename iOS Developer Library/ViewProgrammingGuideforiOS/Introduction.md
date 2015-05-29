@@ -22,3 +22,6 @@
 动画为用户提供了可视的反馈当你的视图层级改变时。系统为展示模态视图和不同群体视图的转换定义了标准的动画。然而视图的许多属性可以直接通过动画处理。比如，通过动画可以改变视图的透明度，在屏幕上的位置，它的大小，它的背景颜色，或者其它属性。并且如果你直接操作视图动画通过**_Core Animation_**层的对象，你也可以通过它执行其它许多动画。
 
 > 相关文章：[动画](https://developer.apple.com/library/ios/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html#//apple_ref/doc/uid/TP40009503-CH6-SW1)
+
+## 界面构建器的作用
+界面构建器是应用用来图形化构建并设置你的应用的视图窗口和视图。
