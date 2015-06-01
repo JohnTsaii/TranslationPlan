@@ -24,7 +24,15 @@
 > 相关文章：[动画](https://developer.apple.com/library/ios/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html#//apple_ref/doc/uid/TP40009503-CH6-SW1)
 
 ## 界面构建器的作用
-界面构建器是应用用来图形化构建并设置你的应用的视图窗口和视图。使用界面构建器，你可以在[nib file]()里组件你的视图，它是存储视图固定的版本和其他目标文件的资源文件。当你运行时加载nib文件，里面的目标文件会被恢复成实际的对象，你可以通过代码手动管理它们。
+界面构建器是应用用来图形化构建并设置你的应用的视图窗口和视图。使用界面构建器，你可以在**_nib 文件_**里组件你的视图，它是存储视图固定的版本和其他目标文件的资源文件。当你运行时加载nib文件，里面的目标文件会被恢复成实际的对象，你可以通过代码手动管理它们。
+>
+A nib file is a special type of resource file that you use to store the user interfaces of iOS and Mac apps. A nib file is an Interface Builder document. You use Interface Builder to design the visual parts of your app—such as windows and views—and sometimes to configure nonvisual objects, such as the controller objects that your app uses to manage its windows and views. In effect, as you edit an Interface Builder document, you create an object graph that is then archived when you save the file. When you load the file, the object graph is unarchived.
 
+The nib file—and hence the object graph—may contain placeholder objects that are used to refer to objects that live outside of the document but that may have references to objects in the document, or to which objects in the document may have references. A special placeholder is the File’s Owner.
+
+At runtime, you load a nib file using the method loadNibNamed:owner: or a variant thereof. The File’s Owner is a placeholder in the nib file for the object that you pass as the owner parameter of that method. Whatever connections you establish to and from the File’s Owner in the nib file in Interface Builder are reestablished when you load the file at runtime.
+
+iOS uses nibs as an implementation detail that supports storyboards, the iOS user interface design layout format. Storyboards allow you to design and visualize the entire user interface of your app on one canvas. For iOS developers, using storyboards is the recommended way to design user interfaces.
+>
 界面构建器大大简化了你在创建应用程序用户界面所需的工作。因为对界面构建器和nib文件的支持是被纳入整个iOS的，只需一点努力你可以纳入nib文件到你的应用程序。
 更多关于如何使用界面构建器的资料，请参考_Interface Builder User Guide_.关于视图控制器如何管理在它们视图里的nib文件的资料，请参考[Creating Custom Content View Controllers](https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/BasicViewControllers/BasicViewControllers.html#//apple_ref/doc/uid/TP40007457-CH101)在[View Controller Programming Guide for iOS](https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/BasicViewControllers/BasicViewControllers.html#//apple_ref/doc/uid/TP40007457-CH101).
