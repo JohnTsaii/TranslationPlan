@@ -24,4 +24,7 @@
 > 相关文章：[动画](https://developer.apple.com/library/ios/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html#//apple_ref/doc/uid/TP40009503-CH6-SW1)
 
 ## 界面构建器的作用
-界面构建器是应用用来图形化构建并设置你的应用的视图窗口和视图。
+界面构建器是应用用来图形化构建并设置你的应用的视图窗口和视图。使用界面构建器，你可以在[nib file]()里组件你的视图，它是存储视图固定的版本和其他目标文件的资源文件。当你运行时加载nib文件，里面的目标文件会被恢复成实际的对象，你可以通过代码手动管理它们。
+
+界面构建器大大简化了你在创建应用程序用户界面所需的工作。因为对界面构建器和nib文件的支持是被纳入整个iOS的，只需一点努力你可以纳入nib文件到你的应用程序。
+更多关于如何使用界面构建器的资料，请参考_Interface Builder User Guide_.关于视图控制器如何管理在它们视图里的nib文件的资料，请参考[Creating Custom Content View Controllers](https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/BasicViewControllers/BasicViewControllers.html#//apple_ref/doc/uid/TP40007457-CH101)在[View Controller Programming Guide for iOS](https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/BasicViewControllers/BasicViewControllers.html#//apple_ref/doc/uid/TP40007457-CH101).
