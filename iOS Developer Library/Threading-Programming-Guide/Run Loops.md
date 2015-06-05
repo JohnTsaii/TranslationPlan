@@ -35,7 +35,8 @@
 
 **表 3-1**列出了被Cocoa和Core Foundation定义的标准模式以及它们的描述何时去使用它们。该名称列中列出了你用来在你的代码里指定模式的实际常量。
 
-**表 3-1** 预定义运行循环模式
+**表 3-1** 预定义运行循环模式   
+
 | Mode           | Name   |  Descripton                |
 |----------------|--------|---------------------------|
 | Default        | [NSDefaultRunLoopMode](https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSRunLoop_Class/index.html#//apple_ref/c/data/NSDefaultRunLoopMode)(Cocoa) [kCFRunLoopDefaultMode](https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFRunLoopRef/index.html#//apple_ref/c/data/kCFRunLoopDefaultMode)(Core Foundation)       | 默认模式是大多数操作之一。大多数的时候，你应该使用这种模式启动你的运行循环和配置你的输入源。|
@@ -43,3 +44,5 @@
 | Modal          | NSModalPanelRunLoopMode(Cocoa)       | Cocoa框架使用这种模式识别用于模态面板的事件                           |
 | Event tracking | NSEventTrackingRunLoopMode(Cocoa)       | Cocoa框架使用这种模式限制在鼠标拖动循环和其他类型的用户界面的跟踪循环的传人事件                           |
 | Commmon modes  | [NSRunLoopCommonModes](https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSRunLoop_Class/index.html#//apple_ref/c/data/NSRunLoopCommonModes)(Cocoa) [kCFRunLoopCommonModes](kCFRunLoopCommonModes)(Core Foundation))     | 这是一个常用模式的可配置组。与之相关联的输入源的相关联的模式都在该群族中。对于Cocoa应用程序，这个集合默认包括了`default,modal和event tracking 模式`。Core Foundation应用程序刚开始只包括了`default`模式。你可以往集合中添加自定义的模式通过使用[CFRunLoopAddCommonMode](https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFRunLoopRef/index.html#//apple_ref/c/func/CFRunLoopAddCommonMode)函数                          |
+
+## 输入源
