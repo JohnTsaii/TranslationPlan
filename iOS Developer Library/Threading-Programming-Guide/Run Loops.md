@@ -23,9 +23,23 @@
 下面的文章提供了更多关于运行循环的组成和它的操作的模式的信息。他们也描述了在处理事件时的不同时间生成的通知。
 
 ## 运行循环模式
-一个_运行循环模式_是一个被监测的输入源和计时器的集合，并且运行循环的观察者的集合会被通知。每次运行你的运行循环时，你指定（显式或隐式的）一个特定的模式在其中运行。在运行循环期间，只有与该模式相关联的源会被监测并且允许他们提交它们的事件。(相似的，只有与该模式相关的观察者会被通知运行循环的进展。)与其他模式相关联的源，会持有新事件直到随后的循环被传递到适当的模式。
+一个_运行循环模式_是一个被监测的输入源和计时器的集合，并且属于该集合的观察者会被运行循环通知。每次运行你的运行循环时，你指定（显式或隐式的）一个特定的模式在其中运行。在运行循环期间，只有与该模式相关联的源会被监测并且允许他们提交它们的事件。(相似的，只有与该模式相关的观察者会被通知运行循环的进展。)与其他模式相关联的源，会持有新事件直到随后的循环被传递到适当的模式。
 
 在你的代码中，你定义一个模式通过名称。*Cocoa 和 Core Foundation*都定义了一个默认模式和常用的模式，
 在你的代码里通过名称来指定这几种模式。你可以自定义模式并指定它的名称通过简单的指定自定义的字符串。虽然分配给自定义模式的名称是任意的，这些模式的内容则不是。你必须确保为你创建的模式添加一个或多个输入源，计时器，或者运行循环的观察者是有用的。
 
 你可以使用模式指定你的运行循环时过滤来自干扰源的事件。大多时候，你会在系统定义的“默认”模式下运行你的运行循环。然而在模态面板中会在“modal”模式下运行。在这种模式下，只有关于模态面板的源能提交事件到现场。对于一些次要的线程，在严格时间的操作里，你可以使用自定义的模式阻止低优先级源的提交的事件。
+
+>**注意：**模式区别对待基于事件的源，模式并不是事件的类型。例如，你不会使用模式匹配只有鼠标点击事件或者键盘事件，你可以使用模式监听一组不同端口，暂停定时器，或者改变当前监视的源和运行循环观察者。
+>
+
+**表 3-1**列出了被Cocoa和Core Foundation定义的标准模式以及它们的描述何时去使用它们。该名称列中列出了你用来在你的代码里指定模式的实际常量。
+
+**表 3-1** 预定义运行循环模式
+| Mode           | Name   |  Descripton                |
+|----------------|--------|---------------------------|
+| Default        | [NSDefaultRunLoopMode](https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSRunLoop_Class/index.html#//apple_ref/c/data/NSDefaultRunLoopMode)(Cocoa) [kCFRunLoopDefaultMode](https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFRunLoopRef/index.html#//apple_ref/c/data/kCFRunLoopDefaultMode)(Core Foundation)       | 默认模式是大多数操作之一。大多数的时候，你应该使用这种模式启动你的运行循环和配置你的输入源。|
+| Connection     | NSConnectionReplyMode(Cocoa)        | Cocoa框架使用这种模式配合`NSConnection`对象去监听响应。你应该很少使用这种模式                       |
+| Modal          | NSModalPanelRunLoopMode(Cocoa)       | Cocoa框架使用这种模式识别用于模态面板的事件                           |
+| Event tracking | NSEventTrackingRunLoopMode(Cocoa)       | Cocoa框架使用这种模式限制在鼠标拖动循环和其他类型的用户界面的跟踪循环的传人事件                           |
+| Commmon modes  | [NSRunLoopCommonModes](https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSRunLoop_Class/index.html#//apple_ref/c/data/NSRunLoopCommonModes)(Cocoa) [kCFRunLoopCommonModes](kCFRunLoopCommonModes)(Core Foundation))     | 这是一个常用模式的可配置组。与之相关联的输入源的相关联的模式都在该群族中。对于Cocoa应用程序，这个集合默认包括了`default,modal和event tracking 模式`。Core Foundation应用程序刚开始只包括了`default`模式。你可以往集合中添加自定义的模式通过使用[CFRunLoopAddCommonMode](https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFRunLoopRef/index.html#//apple_ref/c/func/CFRunLoopAddCommonMode)函数                          |
