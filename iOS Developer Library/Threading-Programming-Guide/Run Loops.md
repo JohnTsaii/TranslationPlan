@@ -18,6 +18,7 @@
 
 图3-1 显示了运行循环的概念结构和多种源。*Input sources*提供了异步事件到相应的处理程序并导致[runUntilDate:](https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSRunLoop_Class/index.html#//apple_ref/occ/instm/NSRunLoop/runUntilDate:)方法(在线程相关联的[NSRunLoop](https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSRunLoop_Class/index.html#//apple_ref/occ/cl/NSRunLoop)对象上被调用)退出执行。*Timer sources*提供事件到它的处理程序但不会导致运行循环退出执行。
 
+图3-1
 ![runloop](/iOS%20Developer%20Library/Threading-Programming-Guide/runloop.jpg)
 
 除了处理输入的源，运行循环也会生成关于运行循环行为的通知。注册*运行循环观察者*可以受到这些通知并使用他们在线程上做更多的处理。你可以使用**Core Foundation**在你的线程安装运行循环观察者。
@@ -48,3 +49,16 @@
 | Commmon modes  | [NSRunLoopCommonModes](https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSRunLoop_Class/index.html#//apple_ref/c/data/NSRunLoopCommonModes)(Cocoa) [kCFRunLoopCommonModes](kCFRunLoopCommonModes)(Core Foundation))     | 这是一个常用模式的可配置组。与之相关联的输入源的相关联的模式都在该群族中。对于Cocoa应用程序，这个集合默认包括了`default,modal和event tracking 模式`。Core Foundation应用程序刚开始只包括了`default`模式。你可以往集合中添加自定义的模式通过使用[CFRunLoopAddCommonMode](https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFRunLoopRef/index.html#//apple_ref/c/func/CFRunLoopAddCommonMode)函数                          |
 
 ## 输入源
+输入源异步提交事件到线程。事件的源取决于输入源的类型，这一般有两类。基于端口的输入源监测你的应用程序的*Mach*端口。自定义的输入源监测自定义源的事件。至于你的运行循环而言，它不应该考虑输入源是否基于端口或者自定义。系统定义实现了两种输入源你只需使用它。这两者唯一的区别在于它们如何被通知的。基于端口的源自动被内核通知，而自定义的源必须从其他的线程手动被通知。但你创建了一个输入源，你把它传递给是运行循环的一个或多哥模式。模式影响输入源在何时被监测。大多时候，你运行运行循环在默认的模式下，但你也可以指定一个自定的模式。如果输入源不在适当的监测模式下，任何在运行循环执行期间生成的事件会被保留知道运行循环在适当的模式下运行。
+
+接下来的段落描述了一些输入源。
+
+### 基于端口输入源
+**Cocoa**和**Core Foundation**提供了内置了支持通过使用端口相关的对象和函数创建基于端口输入源。例如，在**Cocoa**中，你不用直接的创建一个输入源，你只需简单的创建一个端口对象并使用[NSPort](https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSPort_Class/index.html#//apple_ref/occ/cl/NSPort)的方法添加端口到运行循环。这个端口对象为你处理创建和配置需要的操作。
+
+在**Core Foundation**中，你必须手动的创建接口和它的2运行循环源。在这两种情况下，你使用有关于不透明类型的端口方法([CFMachPortRef](https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFMachPortRef/index.html#//apple_ref/c/tdef/CFMachPortRef)[CFMessagePortRef](https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFMessagePortRef/index.html#//apple_ref/c/tdef/CFMessagePortRef),[CFSocketRef](https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFSocketRef/index.html#//apple_ref/c/tdef/CFSocketRef))创建合适的对象.
+
+如何设置和配置自定义基于端口的源的例子，请参考[Configuring a Port-Based Input Source](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Multithreading/RunLoopManagement/RunLoopManagement.html#//apple_ref/doc/uid/10000057i-CH16-131281)。
+
+### 自定义输入源
+为了创建一个自定义的输入源，你必须使用在**Core Foundation**中有关[CFRunLoopSourceRef](https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFRunLoopSourceRef/index.html#//apple_ref/c/tdef/CFRunLoopSourceRef)的不透明类型函数。你配置自定义输入源通过使用几个回调函数。**Core Foundation**调用这些函数在不同的点去配置这个源，处理任何传入的事件，并当它被移除运行循环时拆除这个源。
