@@ -46,3 +46,4 @@
 | Commmon modes  | [NSRunLoopCommonModes](https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSRunLoop_Class/index.html#//apple_ref/c/data/NSRunLoopCommonModes)(Cocoa) [kCFRunLoopCommonModes](kCFRunLoopCommonModes)(Core Foundation))     | 这是一个常用模式的可配置组。与之相关联的输入源的相关联的模式都在该群族中。对于Cocoa应用程序，这个集合默认包括了`default,modal和event tracking 模式`。Core Foundation应用程序刚开始只包括了`default`模式。你可以往集合中添加自定义的模式通过使用[CFRunLoopAddCommonMode](https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFRunLoopRef/index.html#//apple_ref/c/func/CFRunLoopAddCommonMode)函数                          |
 
 ## 输入源
+![Alt text](/iOS\ Developer\Threading-Programming-Guide/runloop.jpg)
