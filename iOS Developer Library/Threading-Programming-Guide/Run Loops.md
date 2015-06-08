@@ -19,6 +19,7 @@
 图3-1 显示了运行循环的概念结构和多种源。*Input sources*提供了异步事件到相应的处理程序并导致[runUntilDate:](https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSRunLoop_Class/index.html#//apple_ref/occ/instm/NSRunLoop/runUntilDate:)方法(在线程相关联的[NSRunLoop](https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSRunLoop_Class/index.html#//apple_ref/occ/cl/NSRunLoop)对象上被调用)退出执行。*Timer sources*提供事件到它的处理程序但不会导致运行循环退出执行。
 
 图3-1
+
 ![runloop](/iOS%20Developer%20Library/Threading-Programming-Guide/runloop.jpg)
 
 除了处理输入的源，运行循环也会生成关于运行循环行为的通知。注册*运行循环观察者*可以受到这些通知并使用他们在线程上做更多的处理。你可以使用**Core Foundation**在你的线程安装运行循环观察者。
